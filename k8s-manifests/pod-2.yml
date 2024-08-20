@@ -1,0 +1,11 @@
+# Pod Template
+apiVersion: v1
+kind: Pod
+metadata:
+  name: p2
+spec:
+  containers:
+    - name: c2
+      image: nginx
+      ports:
+      - containerPort: 80
