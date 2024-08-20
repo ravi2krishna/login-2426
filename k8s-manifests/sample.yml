@@ -1,0 +1,28 @@
+# Comment - This line will be ignored
+
+# key: value
+key: value
+name: ravi
+city: hyd
+batch: 2426
+
+# Dictionary or Map - set of properties for an item
+person:
+  name: ravi
+  city: hyd
+  batch: 2426
+
+# Not an dictionary
+human:
+name: ravi
+city: hyd
+batch: 2426
+
+# Lists or Arrays - Multiple elements 
+person:
+  name: ravi
+  city: hyd
+  batch: 2426
+  hobbies:
+    - cycling
+    - swimming
