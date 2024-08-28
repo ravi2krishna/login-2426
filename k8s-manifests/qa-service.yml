@@ -1,0 +1,14 @@
+# Service Template with NodePort
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecomm-svc
+  namespace: qa
+spec:
+  type: NodePort
+  selector:
+    app: ecomm
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30008
