@@ -1,0 +1,21 @@
+# Deployment Template
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: login
+spec:
+  # 2 Pod should exist at all times - ACROSS 2 NODES
+  replicas: 2
+  selector:
+    matchLabels:
+      app: login
+  template:
+    metadata:
+      labels:
+        app: login
+    spec:
+      containers:
+      - name: login
+        image: ravi2krishna/login-2426
+        ports:
+        - containerPort: 80
