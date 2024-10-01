@@ -43,3 +43,12 @@ resource "aws_subnet" "login-db-sn" {
     Name = "login-database-subnet"
   }
 }
+
+# Internet Gateway For WWW Access
+resource "aws_internet_gateway" "login-igw" {
+  vpc_id = aws_vpc.login-vpc.id
+
+  tags = {
+    Name = "login-internet-gateway"
+  }
+}
