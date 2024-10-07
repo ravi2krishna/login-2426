@@ -119,3 +119,14 @@ resource "aws_network_acl" "login_custom_nacl" {
     Name = "login-custom-nacl"
   }
 }
+
+# Secuirty Group For Frontend
+resource "aws_security_group" "login_web_sg" {
+  name        = "frontend_sg"
+  description = "Allow Frontend Traffic"
+  vpc_id      = aws_vpc.login-vpc.id
+
+  tags = {
+    Name = "frontend_sg"
+  }
+}
