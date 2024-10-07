@@ -150,3 +150,13 @@ resource "aws_vpc_security_group_ingress_rule" "login_web_sg_http" {
   ip_protocol = "tcp"
   to_port     = 80
 }
+
+# Frontend ALL - OutBound
+resource "aws_vpc_security_group_egress_rule" "login_web_sg_outbound" {
+  security_group_id = aws_security_group.login_web_sg.id
+
+  cidr_ipv4   = "0.0.0.0/0"
+  from_port   = 0
+  ip_protocol = "tcp"
+  to_port     = 65535
+}
