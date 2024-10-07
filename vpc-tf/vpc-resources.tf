@@ -160,3 +160,45 @@ resource "aws_vpc_security_group_egress_rule" "login_web_sg_outbound" {
   ip_protocol = "tcp"
   to_port     = 65535
 }
+
+# Secuirty Group For Backend
+resource "aws_security_group" "login_app_sg" {
+  name        = "backend_sg"
+  description = "Allow Backend Traffic"
+  vpc_id      = aws_vpc.login-vpc.id
+
+  tags = {
+    Name = "backend_sg"
+  }
+}
+
+# Backend SSH
+resource "aws_vpc_security_group_ingress_rule" "login_app_sg_ssh" {
+  security_group_id = aws_security_group.login_app_sg.id
+
+  cidr_ipv4   = "0.0.0.0/0"
+  from_port   = 22
+  ip_protocol = "tcp"
+  to_port     = 22
+}
+
+# Backend HTTP
+resource "aws_vpc_security_group_ingress_rule" "login_app_sg_http" {
+  security_group_id = aws_security_group.login_app_sg.id
+
+  cidr_ipv4   = "0.0.0.0/0"
+  from_port   = 8080
+  ip_protocol = "tcp"
+  to_port     = 8080
+}
+
+# Backend ALL - OutBound
+resource "aws_vpc_security_group_egress_rule" "login_app_sg_outbound" {
+  security_group_id = aws_security_group.login_app_sg.id
+
+  cidr_ipv4   = "0.0.0.0/0"
+  from_port   = 0
+  ip_protocol = "tcp"
+  to_port     = 65535
+}
+
