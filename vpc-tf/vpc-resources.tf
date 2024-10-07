@@ -202,3 +202,43 @@ resource "aws_vpc_security_group_egress_rule" "login_app_sg_outbound" {
   to_port     = 65535
 }
 
+# Secuirty Group For Database
+resource "aws_security_group" "login_db_sg" {
+  name        = "database_sg"
+  description = "Allow Database Traffic"
+  vpc_id      = aws_vpc.login-vpc.id
+
+  tags = {
+    Name = "database_sg"
+  }
+}
+
+# Database SSH
+resource "aws_vpc_security_group_ingress_rule" "login_db_sg_ssh" {
+  security_group_id = aws_security_group.login_db_sg.id
+
+  cidr_ipv4   = "0.0.0.0/0"
+  from_port   = 22
+  ip_protocol = "tcp"
+  to_port     = 22
+}
+
+# Database POSTGRES
+resource "aws_vpc_security_group_ingress_rule" "login_db_sg_postgres" {
+  security_group_id = aws_security_group.login_db_sg.id
+
+  cidr_ipv4   = "0.0.0.0/0"
+  from_port   = 5432
+  ip_protocol = "tcp"
+  to_port     = 5432
+}
+
+# Database ALL - OutBound
+resource "aws_vpc_security_group_egress_rule" "login_db_sg_outbound" {
+  security_group_id = aws_security_group.login_db_sg.id
+
+  cidr_ipv4   = "0.0.0.0/0"
+  from_port   = 0
+  ip_protocol = "tcp"
+  to_port     = 65535
+}
