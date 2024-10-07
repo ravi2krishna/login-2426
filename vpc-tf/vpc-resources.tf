@@ -52,3 +52,17 @@ resource "aws_internet_gateway" "login-igw" {
     Name = "login-internet-gateway"
   }
 }
+
+# Route Table for Public
+resource "aws_route_table" "login_pub_rt" {
+  vpc_id = aws_vpc.login-vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.login-igw.id
+  }
+
+  tags = {
+    Name = "login-public-RT"
+  }
+}
