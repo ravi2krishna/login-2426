@@ -6,19 +6,19 @@ variable "aws_secret_key" {}
 
 # Variable VPC CIDR
 variable "vpc_cidr" {
-    type = "string"
+    type = string
     default = "10.0.0.0/16"
 }
 
 # Variable VPC Tenancy
 variable "vpc_tenancy" {
-    type = "string"
+    type = string
     default = "default"
 }
 
 # Variable VPC Name
 variable "vpc_name" {
-    type = "string"
+    type = string
     default = "login"
 }
 
