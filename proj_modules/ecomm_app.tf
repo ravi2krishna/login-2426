@@ -17,6 +17,6 @@ module "ecomm_ec2" {
     instance_name       = "ecomm-server"
 }
 
-output "instance_ip" {
+output "ecomm_instance_ip" {
   value = module.ecomm_ec2.instance_ip
 }

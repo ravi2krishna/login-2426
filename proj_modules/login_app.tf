@@ -17,6 +17,6 @@ module "login_ec2" {
     instance_name       = "login-server"
 }
 
-output "instance_ip" {
+output "login_instance_ip" {
   value = module.login_ec2.instance_ip
 }
